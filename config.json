@@ -1,0 +1,29 @@
+{
+  "app_name": "Local Data ChatBot",
+  "data_directory": "./data",
+  "vector_db_directory": "./chroma_db",
+  "prompt": "./prompt.txt",
+  "text_splitter": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200
+  },
+  "ui": {
+    "gradio_server_name": "0.0.0.0",
+    "gradio_server_port": 7860,
+    "gradio_share_public_link": false
+  },
+  "embeddings": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_kwargs": {
+      "device": "cpu"
+    },
+    "encode_kwargs": {
+      "normalize_embeddings": true
+    }
+  },
+  "anthropic": {
+    "model": "claude-3-5-haiku-20241022",
+    "temperature": 0.7,
+    "max_tokens": 1000
+  }
+}

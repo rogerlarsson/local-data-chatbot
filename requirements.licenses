@@ -1,0 +1,52 @@
+# Local Data ChatBot - Dependency Licenses
+# Generated on: 2025-05-22
+# 
+# This file documents the licensing for all dependencies used in the Local Data ChatBot application.
+# All licenses listed are commercial-friendly and permissive open-source licenses.
+
+# Core Framework Dependencies
+langchain>=0.1.0                    # MIT License - Commercial use allowed
+langchain-community>=0.0.10         # MIT License - Commercial use allowed
+langchain-anthropic>=0.3.0          # MIT License - Commercial use allowed
+gradio>=4.0.0                       # Apache 2.0 - Commercial use allowed  
+anthropic>=0.8.0                    # Commercial API service - Commercial use allowed
+chromadb>=0.4.0                     # Apache 2.0 - Commercial use allowed
+
+# AI/ML Dependencies  
+sentence-transformers>=2.2.0        # Apache 2.0 - Framework commercial-friendly*
+torch>=2.0.0                        # Modified BSD License - Commercial use allowed
+
+# Document Processing
+unstructured[md]>=0.10.0             # Apache 2.0 - Commercial use allowed
+nltk                                 # Apache 2.0 - Commercial use allowed (required by unstructured)
+
+# Utilities
+python-dotenv>=1.0.0                # BSD-3-Clause - Commercial use allowed
+
+# License Summary:
+# - MIT License: Most permissive, allows all commercial use
+# - Apache 2.0: Business-friendly with patent protection  
+# - BSD-3-Clause: Simple and permissive
+# - Modified BSD: PyTorch's permissive license variant
+# - Commercial API: Anthropic's paid service
+
+# Important Notes:
+# * sentence-transformers framework is commercial-friendly, but individual embedding models
+#   may have training data restrictions. The default model (all-MiniLM-L6-v2) has Apache 2.0 
+#   license but was trained on some non-commercial datasets. Users should review licensing 
+#   requirements for their specific use case, especially for commercial applications.
+#
+# All other dependencies have no restrictions for commercial use.
+#
+# For the most current license information, please refer to each package's official documentation:
+# - langchain: https://github.com/langchain-ai/langchain/blob/master/LICENSE
+# - langchain-community: https://github.com/langchain-ai/langchain/blob/master/LICENSE (same repo, same license)
+# - langchain-anthropic: MIT License (separate package, same license family)
+# - gradio: https://github.com/gradio-app/gradio/blob/main/LICENSE  
+# - anthropic: https://www.anthropic.com/terms-of-service
+# - chromadb: https://github.com/chroma-core/chroma/blob/main/LICENSE
+# - sentence-transformers: https://github.com/UKPLab/sentence-transformers/blob/master/LICENSE
+# - torch: https://github.com/pytorch/pytorch/blob/main/LICENSE
+# - unstructured: Apache 2.0 (unstructured-inference package)
+# - nltk: https://github.com/nltk/nltk/blob/develop/LICENSE.txt
+# - python-dotenv: https://github.com/theskumar/python-dotenv/blob/main/LICENSE
