@@ -18,6 +18,7 @@ torch>=2.0.0                        # Modified BSD License - Commercial use allo
 
 # Document Processing
 unstructured[md]>=0.10.0             # Apache 2.0 - Commercial use allowed
+PyPDF2>=3.0.0                       # BSD-2-Clause - Commercial use allowed
 nltk                                 # Apache 2.0 - Commercial use allowed (required by unstructured)
 
 # Utilities
@@ -48,5 +49,6 @@ python-dotenv>=1.0.0                # BSD-3-Clause - Commercial use allowed
 # - sentence-transformers: https://github.com/UKPLab/sentence-transformers/blob/master/LICENSE
 # - torch: https://github.com/pytorch/pytorch/blob/main/LICENSE
 # - unstructured: Apache 2.0 (unstructured-inference package)
+# - PyPDF2: BSD-2-Clause License (very permissive, commercial-friendly)
 # - nltk: https://github.com/nltk/nltk/blob/develop/LICENSE.txt
 # - python-dotenv: https://github.com/theskumar/python-dotenv/blob/main/LICENSE

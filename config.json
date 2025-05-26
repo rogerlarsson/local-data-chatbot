@@ -4,8 +4,8 @@
   "vector_db_directory": "./chroma_db",
   "prompt": "./prompt.txt",
   "text_splitter": {
-    "chunk_size": 1000,
-    "chunk_overlap": 200
+    "chunk_size": 20000,
+    "chunk_overlap": 5000
   },
   "ui": {
     "gradio_server_name": "0.0.0.0",
@@ -23,7 +23,7 @@
   },
   "anthropic": {
     "model": "claude-3-5-haiku-20241022",
-    "temperature": 0.7,
-    "max_tokens": 1000
+    "temperature": 0.1,
+    "max_tokens": 8192
   }
 }

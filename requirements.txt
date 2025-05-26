@@ -6,6 +6,7 @@ anthropic>=0.8.0
 chromadb>=0.4.0
 sentence-transformers>=2.2.0
 unstructured[md]>=0.10.0
+PyPDF2>=3.0.0
 nltk>=3.8
 python-dotenv>=1.0.0
 torch>=2.0.0

@@ -117,21 +117,22 @@ class LocalDataChatBot:
         self._setup_conversation_chain()
     
     def _load_and_process_documents(self):
-        """Load markdown files and create vector embeddings"""
-        print("Loading markdown documents...")
+        """Load markdown and PDF files and create vector embeddings"""
+        print("Loading documents...")
         
-        # Load all markdown files from the directory (recursively including all subdirectories to any depth)
-        loader = DirectoryLoader(
-            self.data_path,
-            glob="**/*.md",
-            loader_cls=UnstructuredMarkdownLoader
-        )
-        documents = loader.load()
+        # Load markdown files
+        md_documents = self._load_markdown_documents()
         
-        if not documents:
-            raise ValueError(f"No markdown files found in {self.data_path}")
+        # Load PDF files
+        pdf_documents = self._load_pdf_documents()
         
-        print(f"Loaded {len(documents)} documents")
+        # Combine all documents
+        all_documents = md_documents + pdf_documents
+        
+        if not all_documents:
+            raise ValueError(f"No documents found in {self.data_path}")
+        
+        print(f"Loaded {len(md_documents)} markdown documents and {len(pdf_documents)} PDF documents")
         
         # Split documents into chunks
         # Text Splitter Configuration:
@@ -152,7 +153,7 @@ class LocalDataChatBot:
             chunk_overlap=text_splitter_config["chunk_overlap"],
             length_function=len
         )
-        chunks = text_splitter.split_documents(documents)
+        chunks = text_splitter.split_documents(all_documents)
         print(f"Created {len(chunks)} text chunks")
         
         # Create HuggingFace embeddings
@@ -174,6 +175,31 @@ class LocalDataChatBot:
         # Persist the database
         self.vectorstore.persist()
         print("ChromaDB vector store created and persisted successfully")
+
+    def _load_markdown_documents(self):
+        """Load all markdown files from the directory (recursively including all subdirectories to any depth)"""
+        loader = DirectoryLoader(
+            self.data_path,
+            glob="**/*.md",
+            loader_cls=UnstructuredMarkdownLoader
+        )
+        return loader.load()
+
+    def _load_pdf_documents(self):
+        """Load all PDF files from the directory (recursively including all subdirectories to any depth)"""
+        try:
+            from langchain.document_loaders import DirectoryLoader, PyPDFLoader
+            
+            loader = DirectoryLoader(
+                self.data_path,
+                glob="**/*.pdf",
+                loader_cls=PyPDFLoader
+            )
+            return loader.load()
+        except ImportError:
+            print("Warning: PyPDF2 not installed. PDF files will be skipped.")
+            print("To enable PDF support, install PyPDF2: pip install PyPDF2")
+            return []
     
     def _setup_conversation_chain(self):
         """Set up the conversational retrieval chain"""
@@ -252,8 +278,8 @@ def create_gradio_interface(chatbot, config):
         gr.Markdown(f"# 📚 {app_name}")
         gr.Markdown("Ask questions about your markdown documents!")
         
-        chatbot_component = gr.Chatbot(            
-            height="80vh",  # Use 80% of viewport height    
+        chatbot_component = gr.Chatbot(
+            height="70vh",  # Use 70% of viewport height
             show_label=False,
             container=True
         )
